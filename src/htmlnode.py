@@ -20,7 +20,7 @@ class HTMLNode:
         return " ".join(f'{key}="{value}"' for key, value in self.props.items())
 
     def __repr__(self):
-        return f"HTMLNode({self.tag}, {self.value}, {self.children}, {self.props})"
+        return f"HTMLNode({self.tag!r}, {self.value!r}, {self.children!r}, {self.props!r})"
 
     def __eq__(self, other):
         if not isinstance(other, HTMLNode):
@@ -30,5 +30,5 @@ class HTMLNode:
             self.tag == other.tag
             and self.value == other.value
             and self.children == other.children
-            and self.props == other.children
+            and self.props == other.props
         )
