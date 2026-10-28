@@ -1,4 +1,5 @@
 import re
+from blocktype import BlockType
 from textnode import TextNode, TextType
 
 
@@ -124,3 +125,21 @@ def markdown_to_blocks(markdown:str) -> list[str]:
         filtered_blocks.append(stripped_block)
 
     return filtered_blocks
+
+def block_to_block_type(md: str) -> BlockType:
+    if re.match(r"^#{1,6} ", md):
+        return BlockType.HEADING
+
+    if re.match(r"^\`{3}\n([^`]|\n)*`{3}$", md, re.MULTILINE):
+        return BlockType.CODE
+
+    if re.match(r"^> ?", md):
+        return BlockType.QUOTE
+
+    if re.match(r"^- ", md):
+        return BlockType.UNORDERED_LIST
+
+    if re.match(r"^\d+\. ", md):
+        return BlockType.ORDERED_LIST
+
+    return BlockType.PARAGRAPH
