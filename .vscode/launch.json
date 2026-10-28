@@ -11,6 +11,21 @@
             "request": "launch",
             "program": "src/main.py",
             "console": "integratedTerminal"
+        },
+         {
+            "name": "test_markdown_to_html",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "src/test_markdown_to_html.py",
+            "console": "integratedTerminal"
+        },
+
+         {
+            "name": "test_block_to_blocktype",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "src/test_block_to_blocktype.py",
+            "console": "integratedTerminal"
         }
     ]
 }

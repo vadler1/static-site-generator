@@ -122,3 +122,6 @@ class TestTextToTextNodes(unittest.TestCase):
         ]
 
         self.assertEqual(nodes, expected)
+
+if __name__ == "__main__":
+    unittest.main()
