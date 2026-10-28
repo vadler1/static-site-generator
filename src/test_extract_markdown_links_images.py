@@ -1,5 +1,5 @@
 import unittest
-from util import extract_markdown_images, extract_markdown_links
+from parser import extract_markdown_images, extract_markdown_links
 
 
 class TestSplitNodesDelimiter(unittest.TestCase):

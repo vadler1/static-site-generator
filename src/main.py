@@ -1,7 +1,7 @@
 from platform import node
 
 from textnode import TextNode, TextType
-from util import extract_markdown_images, split_nodes_delimiter, extract_markdown_links, split_nodes_image
+from parser import extract_markdown_images, split_nodes_delimiter, extract_markdown_links, split_nodes_image
 
 
 def main():

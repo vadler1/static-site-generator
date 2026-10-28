@@ -1,6 +1,6 @@
 import unittest
 from textnode import TextNode, TextType
-from util import text_to_textnodes
+from parser import text_to_textnodes
 
 class TestTextToTextNodes(unittest.TestCase):
     def test_bold_text(self):
