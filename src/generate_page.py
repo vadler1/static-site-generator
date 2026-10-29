@@ -2,7 +2,9 @@ from parser import markdown_to_html_node, extract_title
 import os
 
 
-def generate_page(from_path: str, template_path: str, dest_path: str):
+def generate_page(
+    from_path: str, template_path: str, dest_path: str, basepath: str = "/"
+):
     print(f"[generate_page] {from_path} -> {dest_path} | template: {template_path}")
 
     with open(from_path, "r") as f:
@@ -14,8 +16,11 @@ def generate_page(from_path: str, template_path: str, dest_path: str):
     content_html = markdown_to_html_node(content).to_html()
     title = extract_title(content)
 
-    template = template.replace("{{ Title }}", title).replace(
-        "{{ Content }}", content_html
+    template = (
+        template.replace("{{ Title }}", title)
+        .replace("{{ Content }}", content_html)
+        .replace("href=\"/", f'href="{basepath}')
+        .replace("src=\"/", f'src="{basepath}')
     )
 
     if not os.path.exists(os.path.dirname(dest_path)):
@@ -24,10 +29,12 @@ def generate_page(from_path: str, template_path: str, dest_path: str):
     with open(dest_path, "w") as f:
         f.write(template)
 
-def generate_pages_recursive(dir_path_content: str, template_path: str, dest_dir_path: str):
+
+def generate_pages_recursive(
+    dir_path_content: str, template_path: str, dest_dir_path: str, basepath: str = "/"
+):
     if not os.path.exists(dest_dir_path):
         os.makedirs(dest_dir_path)
-
 
     for file in os.listdir(dir_path_content):
         src_path = os.path.join(dir_path_content, file)
@@ -35,6 +42,8 @@ def generate_pages_recursive(dir_path_content: str, template_path: str, dest_dir
 
         print(f"[generate_pages_recursive] {src_path} -> {dst_path}")
         if os.path.isfile(src_path):
-            generate_page(src_path, template_path, dst_path.replace(".md", ".html"))
+            generate_page(
+                src_path, template_path, dst_path.replace(".md", ".html"), basepath
+            )
         else:
-            generate_pages_recursive(src_path, template_path, dst_path)
+            generate_pages_recursive(src_path, template_path, dst_path, basepath)

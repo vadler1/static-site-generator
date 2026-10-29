@@ -12,15 +12,22 @@
             "program": "src/main.py",
             "console": "integratedTerminal"
         },
-         {
+        {
+            "name": "main.py /static-site-generator/",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "src/main.py",
+            "args": ["/static-site-generator/"],
+            "console": "integratedTerminal"
+        },
+        {
             "name": "test_markdown_to_html",
             "type": "debugpy",
             "request": "launch",
             "program": "src/test_markdown_to_html.py",
             "console": "integratedTerminal"
         },
-
-         {
+        {
             "name": "test_block_to_blocktype",
             "type": "debugpy",
             "request": "launch",
