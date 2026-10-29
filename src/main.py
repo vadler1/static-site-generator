@@ -1,7 +1,7 @@
 import os
 import shutil
 from copystatic import copy_folder
-from generate_page import generate_page
+from generate_page import generate_page, generate_pages_recursive
 
 dir_path_static = "./static"
 dir_path_public = "./public"
@@ -12,7 +12,7 @@ def main():
 
     copy_folder(dir_path_static, dir_path_public)
 
-    generate_page(from_path="content/index.md", template_path="template.html", dest_path="public/index.html")
+    generate_pages_recursive(dir_path_content="content", template_path="template.html", dest_dir_path="public")
 
 if __name__ == "__main__":
     main()

@@ -9,7 +9,7 @@ def copy_folder(src: str, dst: str):
         src_path = os.path.join(src, file)
         dst_path = os.path.join(dst, file)
 
-        print(f" * {src_path} -> {dst_path}")
+        print(f"[copy_folder] {src_path} -> {dst_path}")
         if os.path.isfile(src_path):
             shutil.copy(src_path, dst_path)
         else:
