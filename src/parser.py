@@ -260,3 +260,18 @@ def markdown_to_ordered_list(markdown: str) -> HTMLNode:
     items = re.findall(block_type_patterns[BlockType.ORDERED_LIST], markdown)
     children = [ParentNode(tag="li", children=text_to_children(item)) for _, item in items]
     return ParentNode(tag="ol", children=children)
+
+def extract_title(markdown: str) -> str:
+    blocks = markdown_to_blocks(markdown)
+    for block in blocks:
+        match = re.match(block_type_patterns[BlockType.HEADING], block)
+        if not match:
+            continue
+
+        level = len(match.group(1))
+        if level != 1:
+            continue
+
+        return match.group(2).replace("\n", " ").strip()
+
+    raise Exception("No level 1 heading found")
